@@ -1,6 +1,6 @@
 #modules
 import customtkinter as ctk
-import tkinter as tk
+from PIL import Image
  
 # Sets the appearance of the window
 # Supported modes : Light, Dark, System
@@ -24,7 +24,18 @@ class App(ctk.CTk):
         # Sets the title of the window to "App"
         self.title("Welcome")   
         # Sets the dimensions of the window to 600x700
-        self.geometry(f"{appWidth}x{appHeight}")    
+        self.geometry(f"{appWidth}x{appHeight}")
+
+        # Wallpaper
+
+        # open image using PIL module
+        self.wallpaper = Image.open('home_screen/login_bg.png')
+        # create a CTk image              master             size
+        self.wallpaper = ctk.CTkImage(self.wallpaper, size=(901, 600))
+
+        # create a label and use image= to insert image into the label
+        self.bg = ctk.CTkLabel(self, text=None, image=self.wallpaper)
+        self.bg.place(x=0, y=0, relwidth=1, relheight=1)
  
         # Name Label
         self.nameLabel = ctk.CTkLabel(self,
